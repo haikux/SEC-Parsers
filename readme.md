@@ -1,3 +1,16 @@
+## Update DEF14A CLI
+```
+cd sec_parsers/
+python3 def14a_cli.py <URL>
+# e.g. python3 def14a_cli.py https://www.sec.gov/Archives/edgar/data/320193/000130817924000010/laapl2024_def14a.htm
+```
+
+#### Future Updates
+* I could see a lot of variations in the DEF14A document, either we could keep adding many company specific parsing techniques or
+use classic ML/smalll LLMs to segment and group connected/similar sections together.
+* Support for image and table parsing
+
+
 ## SEC Parsers
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/sec-parsers)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhttps%2F%2Fgithub.com%2Fjohn-friedman%2FSEC-Parsers&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
