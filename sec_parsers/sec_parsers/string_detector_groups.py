@@ -1,5 +1,5 @@
 from sec_parsers.string_detectors import AllCapsStringDetector, EmphasisCapStringDetector, PageNumberStringDetector, BulletPointStringDetector, NoteStringDetector,\
-      PartStringDetector, ItemStringDetector, SignaturesStringDetector, NoteStringDetector, EmptyStringDetector, ProspectusStringDetector
+      PartStringDetector, ItemStringDetector, SignaturesStringDetector, NoteStringDetector, EmptyStringDetector, ProspectusStringDetector, CompensationStringDetector
 from sec_parsers.cleaning import clean_string_for_style_detection
 
 class HeaderStringDetectorGroup:
@@ -64,4 +64,16 @@ class SEC_S1_StringDetectorGroup(HeaderStringDetectorGroup):
             BulletPointStringDetector(parsing_rule='continue',cleaning_rule='skip;')
         ]
         self.insert_string_detectors(new_detectors)
+
+class SEC_DEF14A_StringDetectorGroup(HeaderStringDetectorGroup):
+    def __init__(self):
+        super().__init__()
         
+        new_detectors = [
+            CompensationStringDetector(parsing_rule='return', level=0, cleaning_rule='header;'),
+            ItemStringDetector(parsing_rule='return', level=1, cleaning_rule='header;'),
+            SignaturesStringDetector(parsing_rule='return', level=0, cleaning_rule='header;'),
+            PageNumberStringDetector(parsing_rule='continue', cleaning_rule='remove;'),
+            BulletPointStringDetector(parsing_rule='continue', cleaning_rule='skip;')
+        ]
+        self.insert_string_detectors(new_detectors)

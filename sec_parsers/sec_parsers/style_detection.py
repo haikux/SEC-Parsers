@@ -73,6 +73,13 @@ def detect_emphasis_capitalization(string): # WIP
 
     return has_capitalized_word
     
+def detect_compensation_discussion(string):
+    """e.g. COMPENSATION DISCUSSION AND ANALYSIS"""
+    match = re.search(r"^Compensation Discussion and Analysis$", string, re.IGNORECASE)
+    if match:
+        return True
+    return False
+
 def detect_prospectus(string):
     """e.g. PROSPECTUS SUMMARY"""
     match = re.search(r"^PROSPECTUS SUMMARY$",string, re.IGNORECASE)

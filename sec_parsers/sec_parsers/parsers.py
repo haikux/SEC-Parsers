@@ -1,4 +1,5 @@
-from sec_parsers.string_detector_groups import HeaderStringDetectorGroup, SEC_10K_StringDetectorGroup, SEC_8K_StringDetectorGroup, SEC_S1_StringDetectorGroup
+from sec_parsers.string_detector_groups import HeaderStringDetectorGroup, SEC_10K_StringDetectorGroup, SEC_8K_StringDetectorGroup, SEC_S1_StringDetectorGroup,\
+        SEC_DEF14A_StringDetectorGroup
 from sec_parsers.xml_helper import get_text, get_all_text,\
         set_background_color, remove_background_color, open_tree, is_middle_element
 from sec_parsers.cleaning import clean_title
@@ -380,3 +381,17 @@ class SEC_S1_Parser(HTMLParser):
         
 class SEC_20F_Parser(SEC_10K_Parser):
     pass
+
+class SEC_DEF14A_Parser(HTMLParser):
+    def _init(self, **kwargs):
+        super()._init(**kwargs)
+
+        self.element_detector_group = SEC_10K_ElementGroup()
+        self.string_detector_group = SEC_DEF14A_StringDetectorGroup()
+
+        self.color_dict.update({
+            'compensation;': '#B8860B',
+            'item;': '#BDB76B',
+            'signatures;': '#B8860B',
+            'bullet point;': '#FAFAD2',
+        })

@@ -1,6 +1,16 @@
 from sec_parsers.detectors import StyleTagDetector
 from sec_parsers.style_detection import detect_part,detect_item,detect_signatures,detect_page_number,detect_bullet_point,\
-    detect_all_caps,detect_note,detect_emphasis_capitalization, detect_empty_string, detect_prospectus
+    detect_all_caps,detect_note,detect_emphasis_capitalization, detect_empty_string, detect_prospectus, detect_compensation_discussion
+
+class CompensationStringDetector(StyleTagDetector):
+    def __init__(self, **kwargs):
+        super().__init__(style='compensation;', **kwargs)
+
+    def detect(self, string):
+        if detect_compensation_discussion(string):
+            return 'compensation;'
+        else:
+            return ''
 
 class ProspectusStringDetector(StyleTagDetector):
     def __init__(self, **kwargs):

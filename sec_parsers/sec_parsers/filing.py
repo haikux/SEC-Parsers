@@ -1,6 +1,7 @@
 from lxml import etree
 from sec_parsers.parsers_helper import parse_metadata, detect_filing_type, setup_html
-from sec_parsers.parsers import SEC_10K_Parser, SEC_10Q_Parser, SEC_8K_Parser, SEC_S1_Parser, SEC_20F_Parser
+from sec_parsers.parsers import SEC_10K_Parser, SEC_10Q_Parser, SEC_8K_Parser, SEC_S1_Parser, SEC_20F_Parser,\
+        SEC_DEF14A_Parser
 import csv
 import unicodedata
 
@@ -46,6 +47,9 @@ class Filing:
             self.parser = SEC_S1_Parser()
         elif filing_type == '20-F':
             self.parser = SEC_20F_Parser()
+        elif filing_type == "DEF-14A":
+            self.parser = SEC_DEF14A_Parser()
+    
 
 
     # keep
